@@ -5,16 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>親子讀經班 - 迪士尼夢幻互動版</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 引入動畫庫 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;900&family=Mochiropop+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --disney-blue: #a2d2ff;
-            --disney-pink: #ffafcc;
-            --disney-gold: #ffd60a;
-            --disney-purple: #cdb4db;
-        }
         body {
             font-family: 'Noto Sans TC', sans-serif;
             background: linear-gradient(180deg, #fefae0 0%, #faedcd 100%);
@@ -26,48 +19,23 @@
             position: relative;
             overflow: hidden;
         }
-        .sparkle {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 2s infinite;
-            pointer-events: none;
-        }
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.5); }
-        }
         .text-pop {
             text-shadow: 3px 3px 0px rgba(255,255,255,1), -1px -1px 0px rgba(255,255,255,1);
         }
-        /* 呼吸特效 */
         .breath-effect {
-            animation: breath 3s ease-in-out infinite;
+            animation: breath 4s ease-in-out infinite;
         }
         @keyframes breath {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(255,255,255,0.2); }
-            50% { transform: scale(1.02); box-shadow: 0 0 40px rgba(255,255,255,0.5); }
-        }
-        /* 漂浮雲朵效果 */
-        .floating-cloud {
-            animation: cloudFloat 4s ease-in-out infinite;
-        }
-        @keyframes cloudFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            0%, 100% { transform: scale(1); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+            50% { transform: scale(1.02); box-shadow: 0 30px 60px rgba(0,0,0,0.15); }
         }
         .info-card {
             border-radius: 40px;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .info-card:hover {
-            transform: translateY(-8px) scale(1.01);
-            filter: brightness(1.03);
+            transform: translateY(-8px);
         }
-        .no-wrap {
-            white-space: nowrap;
-        }
-        /* 進場動畫隱藏 */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -77,61 +45,61 @@
             opacity: 1;
             transform: translateY(0);
         }
-        .call-button {
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
+        #image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 40px;
+            display: block;
         }
-        .call-button:hover {
-            border-color: #ffd60a;
-            background-color: #fff9db;
+        .floating-cloud {
+            animation: cloudFloat 4s ease-in-out infinite;
         }
-        .call-button:active {
-            transform: scale(0.95);
+        @keyframes cloudFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
     </style>
 </head>
 <body class="relative">
 
-    <!-- 魔法背景粒子 -->
-    <div class="sparkle w-2 h-2 top-10 left-20"></div>
-    <div class="sparkle w-3 h-3 top-40 right-40" style="animation-delay: 0.5s;"></div>
-    <div class="sparkle w-2 h-2 bottom-60 left-1/3" style="animation-delay: 1.2s;"></div>
-
     <!-- Header -->
     <header class="magic-bg text-white pt-16 pb-32 px-6 rounded-b-[80px] shadow-2xl relative">
         <div class="max-w-6xl mx-auto text-center relative z-10 animate__animated animate__fadeInDown">
             <div class="inline-block bg-white/30 backdrop-blur-md px-6 py-2 rounded-full border-2 border-white/50 mb-6 animate-bounce">
-                <span class="text-white font-black tracking-widest no-wrap">✨ 陪伴孩子快樂成長 ✨</span>
+                <span class="text-white font-black tracking-widest">✨ 陪伴孩子快樂成長 ✨</span>
             </div>
             
-            <h1 class="text-6xl md:text-9xl font-black mb-4 text-pop text-blue-600 drop-shadow-xl tracking-tighter no-wrap">
+            <h1 class="text-6xl md:text-8xl font-black mb-4 text-pop text-blue-600 drop-shadow-xl tracking-tighter">
                 親子<span class="text-pink-500">讀經班</span>
             </h1>
-            <p class="text-2xl md:text-4xl font-bold text-white drop-shadow-md mb-10 no-wrap">
+            <p class="text-2xl md:text-4xl font-bold text-white drop-shadow-md mb-10">
                 一起探索智慧的小寶藏！🎁
             </p>
 
             <div class="flex flex-wrap justify-center gap-4 text-lg">
-                <span class="bg-yellow-400 text-orange-800 px-6 py-2 rounded-full font-black shadow-lg no-wrap">🌈 培養正確人生觀</span>
-                <span class="bg-green-400 text-green-900 px-6 py-2 rounded-full font-black shadow-lg no-wrap">🚀 增加學習能力</span>
-                <span class="bg-purple-400 text-purple-900 px-6 py-2 rounded-full font-black shadow-lg no-wrap">👑 改變氣質</span>
+                <span class="bg-yellow-400 text-orange-800 px-6 py-2 rounded-full font-black shadow-lg">🌈 培養正確人生觀</span>
+                <span class="bg-green-400 text-green-900 px-6 py-2 rounded-full font-black shadow-lg">🚀 增加學習能力</span>
+                <span class="bg-purple-400 text-purple-900 px-6 py-2 rounded-full font-black shadow-lg">👑 改變氣質</span>
+                <span class="bg-blue-400 text-blue-900 px-6 py-2 rounded-full font-black shadow-lg">🌟 陶冶人格</span>
             </div>
         </div>
     </header>
 
     <main class="max-w-5xl mx-auto px-6 -mt-20 relative z-20">
         
-        <!-- AI 主視覺 -->
+        <!-- AI 生成的迪士尼風格：全家讀書畫面 -->
         <div class="mb-16 reveal">
             <div class="bg-white p-4 md:p-6 rounded-[60px] shadow-2xl border-[12px] border-blue-100 relative overflow-hidden breath-effect">
-                <div class="w-full h-auto min-h-[350px] flex items-center justify-center">
-                    <img id="hero-image" src="" class="w-full h-full object-contain rounded-[40px] hidden" alt="魔法共讀">
-                    <div id="hero-loading" class="w-full py-20 flex flex-col items-center justify-center bg-blue-50">
-                        <div class="text-7xl animate-pulse">📖</div>
-                        <p class="text-blue-400 font-black text-2xl mt-4 text-center">正在開啟智慧藏寶圖...</p>
+                <div id="image-container" class="w-full min-h-[400px] flex items-center justify-center bg-blue-50">
+                    <div id="loading-spinner" class="flex flex-col items-center">
+                        <div class="w-16 h-16 border-4 border-blue-400 border-t-transparent rounded-full animate-spin"></div>
+                        <p class="mt-4 text-blue-400 font-bold text-lg">正在繪製全家共讀的溫馨畫面...</p>
                     </div>
                 </div>
                 <div class="absolute top-4 right-8 text-5xl animate-bounce">🧚</div>
+                <div class="absolute bottom-6 left-0 right-0 text-center">
+                    <span class="bg-blue-600/90 backdrop-blur-md text-white px-8 py-3 rounded-full font-black text-xl shadow-lg">👨‍👩‍👧‍👦 三代同堂，智慧傳承 📖</span>
+                </div>
             </div>
         </div>
 
@@ -139,20 +107,11 @@
         <div class="mb-16 reveal">
             <div class="bg-white rounded-[60px] p-10 md:p-14 shadow-xl border-t-8 border-yellow-400 info-card">
                 <div class="flex flex-col md:flex-row items-center gap-8">
-                    <div class="text-8xl animate-pulse">🧠</div>
-                    <div class="flex-1">
-                        <h3 class="text-3xl md:text-4xl font-black text-orange-600 mb-6 text-center md:text-left">把握孩子「黃金大腦期」</h3>
-                        <div class="space-y-4 text-gray-700">
-                            <p class="text-xl font-bold leading-relaxed border-l-4 border-yellow-400 pl-4">
-                                教育專家指出：<span class="text-blue-600">0-13 歲</span> 是孩子記憶力的黃金時期！
-                            </p>
-                            <p class="text-xl font-bold leading-relaxed border-l-4 border-yellow-400 pl-4">
-                                大腦如海綿一般，在此時給予引導，吸收效果最驚人！
-                            </p>
-                            <p class="text-xl font-bold leading-relaxed border-l-4 border-yellow-400 pl-4">
-                                藉由經典啟蒙，<span class="text-pink-500">潛移默化心靈</span>，為人格紮下最深的根。
-                            </p>
-                        </div>
+                    <div class="text-8xl">🧠</div>
+                    <div class="flex-1 text-gray-700">
+                        <h3 class="text-3xl font-black text-orange-600 mb-6 text-center md:text-left">把握孩子「黃金大腦期」</h3>
+                        <p class="text-xl font-bold mb-4 border-l-4 border-yellow-400 pl-4">教育專家指出：<span class="text-blue-600 font-black">0-13 歲</span> 是孩子記憶力的黃金時期！</p>
+                        <p class="text-xl font-bold border-l-4 border-yellow-400 pl-4 italic">大腦如海綿般吸收智慧，為孩子人格紮下最深的根基。</p>
                     </div>
                 </div>
             </div>
@@ -160,132 +119,146 @@
 
         <!-- 核心資訊 -->
         <div class="grid md:grid-cols-2 gap-10 mb-16 reveal">
+            <!-- 上課資訊 -->
             <div class="bg-blue-100 rounded-[60px] p-10 border-4 border-blue-400 shadow-xl info-card relative">
-                <div class="absolute -top-10 -left-6 text-7xl">⏰</div>
-                <h2 class="text-4xl font-black text-blue-700 mb-8 text-center no-wrap">上課資訊</h2>
-                <div class="space-y-6">
-                    <div class="bg-white p-6 rounded-[35px] text-center shadow-md">
-                        <p class="text-blue-400 font-black text-xl mb-1 italic no-wrap">📅 開課日期</p>
-                        <p class="text-2xl font-black text-gray-800 no-wrap">2026/3/13 ～ 2026/5/22</p>
-                        <p class="text-blue-600 font-black text-xl mt-2 underline no-wrap">每週五晚上 19:40-20:30</p>
+                <div class="absolute -top-8 -left-4 text-6xl">⏰</div>
+                <h2 class="text-4xl font-black text-blue-700 mb-8 text-center">上課資訊</h2>
+                <div class="space-y-4">
+                    <div class="bg-white p-6 rounded-[35px] text-center shadow-md border-b-4 border-blue-200">
+                        <p class="text-blue-400 font-black text-sm uppercase">Date / 開課日期</p>
+                        <p class="text-2xl font-black text-gray-800">2026/3/13 ～ 5/22</p>
+                        <p class="text-blue-600 font-black mt-2 text-lg underline">每週五 19:40 - 20:30</p>
                     </div>
-                    <div class="bg-white p-6 rounded-[35px] text-center shadow-md">
-                        <p class="text-blue-400 font-black text-xl mb-1 italic no-wrap">📍 上課地點</p>
-                        <p class="text-4xl font-black text-gray-800 no-wrap">鄉土教室</p>
+                    <div class="bg-white p-6 rounded-[35px] text-center shadow-md border-b-4 border-blue-200">
+                        <p class="text-blue-400 font-black text-sm uppercase">Location / 地點</p>
+                        <p class="text-4xl font-black text-gray-800">大橋國小 鄉土教室</p>
                     </div>
                 </div>
             </div>
 
+            <!-- 報名資訊 -->
             <div class="bg-pink-100 rounded-[60px] p-10 border-4 border-pink-400 shadow-xl info-card relative">
-                <div class="absolute -top-10 -right-6 text-7xl">🎒</div>
-                <h2 class="text-4xl font-black text-pink-700 mb-8 text-center no-wrap">報名必看</h2>
-                <div class="space-y-6">
-                    <div class="bg-white p-6 rounded-[35px] text-center shadow-md">
-                        <p class="text-pink-400 font-black text-xl mb-1 italic no-wrap">👶 招生對象</p>
-                        <p class="text-2xl font-black text-gray-800 no-wrap">幼稚園 ～ 國小四年級</p>
+                <div class="absolute -top-8 -right-4 text-6xl">🎒</div>
+                <h2 class="text-4xl font-black text-pink-700 mb-8 text-center">報名必看</h2>
+                <div class="space-y-4">
+                    <div class="bg-white p-6 rounded-[35px] text-center shadow-md border-b-4 border-pink-200">
+                        <p class="text-pink-400 font-black text-sm uppercase">Target / 對象</p>
+                        <p class="text-2xl font-black text-gray-800">幼稚園 ～ 國小四年級</p>
                     </div>
                     <div class="bg-orange-500 text-white p-6 rounded-[35px] text-center shadow-lg transform -rotate-1">
-                        <p class="font-black text-xl mb-1 opacity-80 italic no-wrap">💰 報名費用</p>
-                        <p class="text-5xl font-black no-wrap">350 <span class="text-2xl">元/人</span></p>
-                        <p class="text-xs font-bold mt-2">(全勤期末退還保證金800元)</p>
+                        <p class="font-black text-sm opacity-80 uppercase">Fee / 報名費</p>
+                        <p class="text-5xl font-black">350 <span class="text-xl">元/人</span></p>
+                        <p class="text-xs font-bold mt-1 text-orange-100">(全勤期末退還保證金800元)</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 聯絡方式 -->
-        <div class="bg-blue-600 rounded-[70px] p-8 md:p-12 text-white shadow-2xl relative overflow-hidden mb-20 border-8 border-white reveal">
-            <div class="relative z-10 max-w-2xl mx-auto text-center">
-                <h2 class="text-2xl md:text-3xl font-black mb-2 text-yellow-300 tracking-tight">解鎖智慧寶庫，現在就預約報名！✨</h2>
-                <p class="text-white/80 text-lg font-bold mb-8">點擊下方電話，直接撥號聯繫老師</p>
-                
-                <div class="flex flex-col gap-6 items-center">
-                    <a href="tel:0952087830" class="call-button bg-white px-8 py-5 rounded-[40px] text-blue-700 shadow-xl flex items-center gap-6 w-full max-w-md active:scale-95 transition-all">
-                        <span class="text-4xl animate-bounce">👩‍🏫</span>
+        <!-- 聯絡老師區塊 - 重新排版與放大 -->
+        <div class="mb-16 reveal">
+            <h2 class="text-3xl font-black text-center text-blue-800 mb-8">✨ 現在就預約報名 ✨</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- 楊老師 -->
+                <a href="tel:0952087830" class="bg-white border-4 border-blue-400 p-8 rounded-[50px] text-blue-700 shadow-2xl flex items-center justify-between hover:bg-blue-50 transition-all active:scale-95 group">
+                    <div class="flex items-center gap-6">
+                        <div class="text-6xl bg-blue-100 p-4 rounded-full group-hover:rotate-12 transition-transform">👩‍🏫</div>
                         <div class="text-left">
-                            <p class="text-sm font-black text-blue-300">報名諮詢第一站</p>
-                            <p class="text-xl font-black">楊老師</p>
-                            <p class="text-2xl md:text-3xl font-black tracking-tighter">0952-087-830</p>
+                            <p class="text-sm font-bold text-blue-400 uppercase tracking-widest">Enrollment / 報名諮詢</p>
+                            <p class="text-3xl font-black mb-1">楊老師</p>
+                            <p class="text-2xl font-black text-blue-600 tracking-tighter">0952-087-830</p>
                         </div>
-                        <span class="ml-auto text-blue-100">📞</span>
-                    </a>
-                    
-                    <a href="tel:0989544347" class="call-button bg-white px-8 py-5 rounded-[40px] text-blue-700 shadow-xl flex items-center gap-6 w-full max-w-md active:scale-95 transition-all">
-                        <span class="text-4xl animate-bounce" style="animation-delay: 0.5s">👨‍🏫</span>
+                    </div>
+                    <div class="text-3xl animate-pulse">📞</div>
+                </a>
+                <!-- 伍老師 -->
+                <a href="tel:0989544347" class="bg-white border-4 border-blue-400 p-8 rounded-[50px] text-blue-700 shadow-2xl flex items-center justify-between hover:bg-blue-50 transition-all active:scale-95 group">
+                    <div class="flex items-center gap-6">
+                        <div class="text-6xl bg-blue-100 p-4 rounded-full group-hover:rotate-12 transition-transform">👨‍🏫</div>
                         <div class="text-left">
-                            <p class="text-sm font-black text-blue-300">課程專業顧問</p>
-                            <p class="text-xl font-black">伍老師</p>
-                            <p class="text-2xl md:text-3xl font-black tracking-tighter">0989-544-347</p>
+                            <p class="text-sm font-bold text-blue-400 uppercase tracking-widest">Consultant / 課程顧問</p>
+                            <p class="text-3xl font-black mb-1">伍老師</p>
+                            <p class="text-2xl font-black text-blue-600 tracking-tighter">0989-544-347</p>
                         </div>
-                        <span class="ml-auto text-blue-100">📞</span>
-                    </a>
-                </div>
+                    </div>
+                    <div class="text-3xl animate-pulse">📞</div>
+                </a>
             </div>
         </div>
 
-        <!-- 特別加大的單位區塊：可愛雲朵風格 -->
+        <!-- 主辦與協辦單位 - 重新加入最下方 -->
         <div class="grid md:grid-cols-2 gap-8 mb-24 reveal">
-            <div class="floating-cloud bg-white rounded-[50px] p-8 shadow-2xl border-4 border-blue-200 text-center flex flex-col items-center justify-center relative overflow-hidden">
-                <div class="absolute -top-4 -right-4 text-4xl opacity-20">☁️</div>
-                <p class="text-blue-400 font-black text-lg mb-2 uppercase tracking-widest">Organized by</p>
-                <h4 class="text-3xl md:text-4xl font-black text-blue-700 leading-tight">中華經典研究學會</h4>
-                <div class="mt-4 text-5xl">🏛️</div>
+            <div class="floating-cloud bg-white/80 backdrop-blur-sm rounded-[50px] p-8 shadow-xl border-4 border-blue-200 text-center flex flex-col items-center justify-center">
+                <p class="text-blue-400 font-black text-sm uppercase tracking-widest mb-2">Organized by</p>
+                <h4 class="text-3xl font-black text-blue-800 leading-tight">中華經典研究學會</h4>
+                <div class="mt-4 text-4xl">🏛️</div>
             </div>
 
-            <div class="floating-cloud bg-white rounded-[50px] p-8 shadow-2xl border-4 border-pink-200 text-center flex flex-col items-center justify-center relative overflow-hidden" style="animation-delay: 0.5s;">
-                <div class="absolute -top-4 -left-4 text-4xl opacity-20">☁️</div>
-                <p class="text-pink-400 font-black text-lg mb-2 uppercase tracking-widest">Supported by</p>
-                <h4 class="text-3xl md:text-4xl font-black text-pink-700 leading-tight">臺北市大橋國民小學</h4>
-                <div class="mt-4 text-5xl">🏫</div>
+            <div class="floating-cloud bg-white/80 backdrop-blur-sm rounded-[50px] p-8 shadow-xl border-4 border-pink-200 text-center flex flex-col items-center justify-center" style="animation-delay: 0.5s;">
+                <p class="text-pink-400 font-black text-sm uppercase tracking-widest mb-2">Supported by</p>
+                <h4 class="text-3xl font-black text-pink-800 leading-tight">臺北市大橋國民小學</h4>
+                <div class="mt-4 text-4xl">🏫</div>
             </div>
         </div>
 
     </main>
 
-    <footer class="bg-gray-100 py-10 px-6 rounded-t-[60px] text-center">
-        <p class="text-gray-400 font-bold text-sm">© 2026 親子讀經班 | 給孩子最好的智慧啟蒙 🌟</p>
+    <footer class="bg-gray-100 py-10 px-6 rounded-t-[60px] text-center border-t border-gray-200">
+        <p class="text-gray-400 font-bold text-sm tracking-widest">© 2026 親子讀經班 | 給孩子最好的智慧啟蒙 🌟</p>
     </footer>
 
     <script>
-        const apiKey = ""; 
-        
-        async function fetchImages() {
-            const prompt = "A heartwarming Disney-style animation scene. An Asian family reading a giant magical ancient book that glows with soft gold wisdom energy. Whimsical warm classroom, floating sparkles, joyful faces, 4k storybook style.";
+        const apiKey = "";
+
+        async function generateHeroImage() {
+            const container = document.getElementById('image-container');
+            
+            // 強化提示詞：包含爸爸、媽媽、爺爺、奶奶及小孩全家人
+            const prompt = "A high-quality Disney animation style illustration (Pixar 3D style). A happy multi-generational Asian family including father, mother, grandfather, grandmother, and two young children, all sitting together in a cozy, magical library or garden. They are all looking at and reading from a large, glowing ancient book together with big joyful smiles. Floating magical sparkles, warm golden lighting, whimsical atmosphere, vibrant and soft colors.";
             
             try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        contents: [{ parts: [{ text: prompt }] }]
+                        instances: [{ prompt: prompt }],
+                        parameters: { sampleCount: 1 }
                     })
                 });
-
-                // 注意：這裡使用示意邏輯，實際 Imagen 呼叫會依照環境 API 規範
-                // 為了讓您能在本地開啟，建議將生成的圖片直接右鍵另存，或手動替換 src
-                // 此處保留自動載入結構
+                
+                const result = await response.json();
+                if (result.predictions && result.predictions[0]) {
+                    const imageUrl = `data:image/png;base64,${result.predictions[0].bytesBase64Encoded}`;
+                    const img = document.createElement('img');
+                    img.src = imageUrl;
+                    img.alt = "全家共讀迪士尼風格圖片";
+                    img.className = "animate__animated animate__fadeIn";
+                    container.innerHTML = '';
+                    container.appendChild(img);
+                }
             } catch (error) {
-                document.getElementById('hero-loading').innerHTML = "<div class='text-7xl'>📖</div>";
+                console.error("Image generation failed:", error);
+                container.innerHTML = `
+                    <div class="text-center p-10">
+                        <div class="text-8xl mb-4">👨‍👩‍👧‍👦</div>
+                        <p class="text-blue-600 font-black text-2xl">全家一起讀經，智慧代代相傳！</p>
+                    </div>`;
             }
         }
 
         function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
+            const reveals = document.querySelectorAll(".reveal");
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add("active");
                 }
-            }
+            });
         }
 
         window.addEventListener("scroll", reveal);
         window.onload = () => {
-            // 在本地開啟時，如果沒有 API Key，圖片會顯示預設載入狀態
-            // 您可以在預覽視圖中右鍵另存圖片後，手動將 <img> 的 src 換成圖片路徑
-            fetchImages(); 
+            generateHeroImage();
             reveal();
         };
     </script>
